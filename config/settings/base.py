@@ -11,7 +11,7 @@ APPS_DIR = ROOT_DIR.path("yousi")
 
 env = environ.Env()
 
-READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
+READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(ROOT_DIR.path(".env")))
@@ -26,7 +26,7 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 # In Windows, this must be set to your system time zone.
 TIME_ZONE = "Asia/Shanghai"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "zh-Hans"
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
@@ -45,7 +45,8 @@ LOCALE_PATHS = [ROOT_DIR.path("locale")]
 DATABASES = {
     "default": env.db("DATABASE_URL", default="postgres:///yousi")
 }
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+
+DATABASES['default']['ATOMIC_REQUESTS'] = True  # 将HTTP请求封装到事务
 
 # URLS
 # ------------------------------------------------------------------------------
@@ -209,11 +210,15 @@ X_FRAME_OPTIONS = "DENY"
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
-)
-# https://docs.djangoproject.com/en/2.2/ref/settings/#email-timeout
-EMAIL_TIMEOUT = 5
+EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-host
+EMAIL_HOST = env('DJANGO_EMAIL_HOST')
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-port
+EMAIL_USE_SSL = env('DJANGO_EMAIL_USE_SSL', default=True)
+EMAIL_PORT = env('DJANGO_EMAIL_PORT', default=465)
+EMAIL_HOST_USER = env('DJANGO_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('DJANGO_EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL')
 
 # ADMIN
 # ------------------------------------------------------------------------------

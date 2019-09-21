@@ -331,11 +331,10 @@ pyvenv.cfg
 pip-selfcheck.json
 .env
 
-
 ### Project template
 
 yousi/media/
 
 .pytest_cache/
 
-
+.env
