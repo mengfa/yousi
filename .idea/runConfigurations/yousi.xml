@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="migrate" type="Python.DjangoServer" factoryName="Django server" singleton="true">
+  <configuration default="false" name="yousi" type="Python.DjangoServer" factoryName="Django server" singleton="true">
     <module name="yousi" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
@@ -12,13 +12,15 @@
     <option name="IS_MODULE_SDK" value="true" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
-    <PathMappingSettings>
-      <option name="pathMappings">
-        <list>
-          <mapping local-root="$PROJECT_DIR$" remote-root="/app" />
-        </list>
-      </option>
-    </PathMappingSettings>
+    <EXTENSION ID="net.ashald.envfile">
+      <option name="IS_ENABLED" value="false" />
+      <option name="IS_SUBST" value="false" />
+      <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+      <option name="IS_IGNORE_MISSING_FILES" value="false" />
+      <ENTRIES>
+        <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+      </ENTRIES>
+    </EXTENSION>
     <option name="launchJavascriptDebuger" value="false" />
     <option name="host" value="" />
     <option name="additionalOptions" value="" />

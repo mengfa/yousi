@@ -36,7 +36,7 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
-LOCALE_PATHS = [ROOT_DIR.path("locale")]
+# LOCALE_PATHS = [ROOT_DIR.path("locale")]
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ DJANGO_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "django.contrib.humanize", # Handy template tags
+    "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
 ]
 THIRD_PARTY_APPS = [
@@ -73,11 +73,17 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",
+    "sorl.thumbnail",
     "django_celery_beat",
+
+    "taggit",
+    "markdownx",
 ]
 
 LOCAL_APPS = [
     "yousi.users.apps.UsersConfig",
+    'news.apps.NewsConfig',
+    'qa.apps.QaConfig',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

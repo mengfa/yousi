@@ -5,17 +5,29 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from yousi.news.views import NewsListView
+
 urlpatterns = [
+path(
+
+    '', NewsListView.as_view(), name='home'),
+
+    # 第三方应用
+    # path('comments/', include('django_comments.urls')),
+    path('markdownx/', include('markdownx.urls')),
+
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path(
-        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
+    path("about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
+
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("yousi.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
+    path('news/', include('yousi.news.urls', namespace='news')),
+    path('qa/', include('qa.urls', namespace='qa')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
